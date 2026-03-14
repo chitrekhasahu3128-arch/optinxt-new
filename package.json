@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "install:all": "npm install",
+    "dev": "npm run dev:all",
     "dev:ai-workforce": "npm --workspace=ai-workforce run dev",
     "dev:ai-workforce:backend": "npm --workspace=ai-workforce run backend:dev",
     "dev:ai-workforce:frontend": "npm --workspace=ai-workforce run frontend:dev",
