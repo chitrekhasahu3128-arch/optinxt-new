@@ -1,0 +1,7 @@
+{
+  "name": "AI Workforce Employee Portal",
+  "description": "A production-ready employee portal for AI-driven workforce optimization, featuring skill intelligence, fatigue analysis, and AI career coaching.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}

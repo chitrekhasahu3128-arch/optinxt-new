@@ -1,0 +1,104 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "User Profile",
+      "description": "Stores employee profile information.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "role": { "type": "string", "enum": ["employee", "manager", "admin"] },
+        "designation": { "type": "string" },
+        "department": { "type": "string" },
+        "manager": { "type": "string" },
+        "location": { "type": "string" },
+        "employmentType": { "type": "string" },
+        "employeeId": { "type": "string" },
+        "fitmentScore": { "type": "number" },
+        "utilizationRate": { "type": "number" },
+        "skills": { "type": "object" },
+        "performanceSummary": { "type": "string" },
+        "careerTimeline": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Skill": {
+      "title": "Employee Skill",
+      "description": "Stores skills and proficiency levels for an employee.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "level": { "type": "number", "description": "Proficiency level 0-100" },
+        "category": { "type": "string" }
+      },
+      "required": ["userId", "name", "level"]
+    },
+    "WorkloadData": {
+      "title": "Workload and Fatigue Data",
+      "description": "Stores metrics related to employee workload and fatigue.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "workloadScore": { "type": "number" },
+        "fatigueScore": { "type": "number" },
+        "efficiencyScore": { "type": "number" },
+        "hoursWorked": { "type": "number" },
+        "timestamp": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "workloadScore", "fatigueScore"]
+    },
+    "Assessment": {
+      "title": "Employee Assessment",
+      "description": "Stores results of employee self-assessments or manager reviews.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "type": { "type": "string", "enum": ["self", "manager"] },
+        "responses": { "type": "object" },
+        "score": { "type": "number" },
+        "status": { "type": "string", "enum": ["draft", "submitted"] },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "type", "responses", "status"]
+    },
+    "Recommendation": {
+      "title": "AI Recommendation",
+      "description": "Stores AI-generated recommendations for employees.",
+      "type": "object",
+      "properties": {
+        "userId": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "priority": { "type": "string", "enum": ["low", "medium", "high"] },
+        "category": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["userId", "title", "description", "priority"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "Collection of user profiles."
+    },
+    "/skills/{skillId}": {
+      "schema": "Skill",
+      "description": "Collection of employee skills."
+    },
+    "/workload/{workloadId}": {
+      "schema": "WorkloadData",
+      "description": "Collection of workload and fatigue records."
+    },
+    "/assessments/{assessmentId}": {
+      "schema": "Assessment",
+      "description": "Collection of employee assessments."
+    },
+    "/recommendations/{recId}": {
+      "schema": "Recommendation",
+      "description": "Collection of AI recommendations."
+    }
+  }
+}

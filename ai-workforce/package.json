@@ -1,0 +1,22 @@
+{
+  "name": "ai-workforce-portal",
+  "version": "1.0.0",
+  "description": "Integrated AI Workforce Employee Portal with Login, Employee Dashboard, and Manager Dashboard",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install && npm install --prefix frontend && npm install --prefix backend",
+    "dev": "concurrently \"npm run backend:dev\" \"npm run frontend:dev\"",
+    "frontend:dev": "npm run dev --prefix frontend",
+    "backend:dev": "npm run dev --prefix backend",
+    "start": "npm run backend:start",
+    "backend:start": "npm start --prefix backend",
+    "build": "npm run build --prefix frontend && npm run build --prefix backend",
+    "frontend:build": "npm run build --prefix frontend"
+  },
+  "keywords": ["workforce", "employee", "manager", "dashboard"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

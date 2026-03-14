@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Roboto", ui-sans-serif, system-ui, sans-serif;
+  
+  --color-navy-900: #0A1A2A;
+  --color-navy-800: #14283D;
+  --color-navy-700: #1E3A5F;
+  --color-light-blue: #4DA8CC;
+  --color-opti-orange: #F7931E;
+  --color-opti-red: #E84D1E;
+}
+
+@layer base {
+  body {
+    @apply bg-navy-900 text-slate-200 font-sans antialiased;
+  }
+}
+
+.glass-card {
+  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
+}
+
+.text-gradient-orange {
+  @apply bg-linear-to-br from-opti-orange to-opti-red bg-clip-text text-transparent;
+}
+
+@keyframes drawRing {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes drawOrbit {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes spinOrbit1 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spinOrbit2 {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes popCore {
+  to { transform: scale(1); }
+}
+
+@keyframes corePulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+
+@keyframes popNode {
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes drawArrow {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes arrowPulse {
+  0%, 100% { transform: translateX(0); opacity: 1; }
+  50% { transform: translateX(4px); opacity: 0.7; }
+}
+
+@keyframes drawConn {
+  to { stroke-dashoffset: 0; }
+}
+
+.animate-draw-ring {
+  stroke-dasharray: 460;
+  stroke-dashoffset: 460;
+  animation: drawRing 1.4s cubic-bezier(0.65, 0, 0.35, 1) 0.2s forwards;
+}
+
+.animate-draw-orbit {
+  stroke-dasharray: 280;
+  stroke-dashoffset: 280;
+  animation: drawOrbit 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.animate-spin-orbit-1 {
+  animation: spinOrbit1 12s linear 1.8s infinite;
+}
+
+.animate-spin-orbit-2 {
+  animation: spinOrbit2 15s linear 1.8s infinite reverse;
+}
+
+.animate-pop-core {
+  transform: scale(0);
+  animation: popCore 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-core-pulse {
+  animation: corePulse 2.5s ease-in-out 2s infinite;
+}
+
+.animate-pop-node {
+  opacity: 0;
+  transform: scale(0);
+  animation: popNode 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-draw-arrow {
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: drawArrow 0.6s cubic-bezier(0.65, 0, 0.35, 1) 1.9s forwards;
+}
+
+.animate-arrow-pulse {
+  animation: arrowPulse 2s ease-in-out 2.5s infinite;
+}
+
+.animate-draw-conn {
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: drawConn 0.4s ease 1.5s forwards;
+}

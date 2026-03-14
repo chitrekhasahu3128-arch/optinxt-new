@@ -1,0 +1,120 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    //
+    // Collection: users
+    // Fields: uid, displayName, email, role, department, jobTitle, photoURL, createdAt
+    //
+    // Collection: skills
+    // Fields: userId, name, level, category
+    //
+    // Collection: workload
+    // Fields: userId, workloadScore, fatigueScore, efficiencyScore, hoursWorked, timestamp
+    //
+    // Collection: assessments
+    // Fields: userId, type, responses, score, status, createdAt
+    //
+    // Collection: recommendations
+    // Fields: userId, title, description, priority, category, createdAt
+    //
+    // ===============================================================
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        (
+          (exists(/databases/$(database)/documents/users/$(request.auth.uid)) && 
+           get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin') ||
+          (request.auth.token.email == "bswati18000@gmail.com" && request.auth.token.email_verified == true)
+        );
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function isValidEmail(email) {
+      return email is string && email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    function isValidUser(data) {
+      return data.uid is string && data.email is string &&
+             data.name is string && data.designation is string;
+    }
+
+    function isValidSkill(data) {
+      return hasOnlyAllowedFields(['userId', 'name', 'level', 'category']) &&
+             data.userId is string && data.name is string && data.level is number && data.level >= 0 && data.level <= 100;
+    }
+
+    function isValidWorkload(data) {
+      return data.userId is string && data.workloadScore is number && data.fatigueScore is number;
+    }
+
+    function isValidAssessment(data) {
+      return hasOnlyAllowedFields(['userId', 'type', 'responses', 'score', 'status', 'createdAt']) &&
+             data.userId is string && data.type in ['self', 'manager'] && data.status in ['draft', 'submitted'];
+    }
+
+    function isValidRecommendation(data) {
+      return hasOnlyAllowedFields(['userId', 'title', 'description', 'priority', 'category', 'createdAt']) &&
+             data.userId is string && data.priority in ['low', 'medium', 'high'];
+    }
+
+    // ===============================================================
+    // Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow update: if isAuthenticated() && (isOwner(userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /skills/{skillId} {
+      allow read: if isAuthenticated();
+      allow create: if isAuthenticated() && isValidSkill(request.resource.data) && (isOwner(request.resource.data.userId) || isAdmin());
+      allow update: if isAuthenticated() && isValidSkill(request.resource.data) && (isOwner(resource.data.userId) || isAdmin());
+      allow delete: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+    }
+
+    match /workload/{workloadId} {
+      allow read: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+      allow create: if isAuthenticated() && isValidWorkload(request.resource.data) && (isOwner(request.resource.data.userId) || isAdmin());
+      allow update: if isAuthenticated() && isValidWorkload(request.resource.data) && (isOwner(resource.data.userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /assessments/{assessmentId} {
+      allow read: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+      allow create: if isAuthenticated() && isValidAssessment(request.resource.data) && (isOwner(request.resource.data.userId) || isAdmin());
+      allow update: if isAuthenticated() && isValidAssessment(request.resource.data) && (isOwner(resource.data.userId) || isAdmin());
+      allow delete: if isAdmin();
+    }
+
+    match /recommendations/{recId} {
+      allow read: if isAuthenticated() && (isOwner(resource.data.userId) || isAdmin());
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+  }
+}
