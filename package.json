@@ -1,0 +1,25 @@
+{
+  "name": "optinext-monorepo",
+  "private": true,
+  "workspaces": [
+    "ai-workforce",
+    "ai-workforce-employee-portal",
+    "optinxt-1",
+    "PeopleStat-1 (1)/PeopleStat-1"
+  ],
+  "scripts": {
+    "install:all": "npm install",
+    "dev:ai-workforce": "npm --workspace=ai-workforce run dev",
+    "dev:ai-workforce:backend": "npm --workspace=ai-workforce run backend:dev",
+    "dev:ai-workforce:frontend": "npm --workspace=ai-workforce run frontend:dev",
+    "dev:employee-portal": "npm --workspace=ai-workforce-employee-portal run dev",
+    "dev:optinxt": "npm --workspace=optinxt-1 run dev",
+    "dev:peoplestat": "npm --workspace=\"PeopleStat-1 (1)/PeopleStat-1\" run dev",
+    "dev:all": "concurrently \"npm run dev:ai-workforce\" \"npm run dev:employee-portal\" \"npm run dev:optinxt\" \"npm run dev:peoplestat\"",
+    "build:all": "npm --workspace=ai-workforce run build && npm --workspace=ai-workforce-employee-portal run build && npm --workspace=optinxt-1 run build",
+    "lint:all": "npm --workspace=ai-workforce-employee-portal run lint && npm --workspace=optinxt-1 run lint"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}

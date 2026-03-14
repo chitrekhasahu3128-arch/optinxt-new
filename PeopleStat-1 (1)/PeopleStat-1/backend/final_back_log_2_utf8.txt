@@ -1,0 +1,79 @@
+﻿
+> backend@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ≡ƒ¢í∩╕Å auth for agents: https://vestauth.com
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ≡ƒñû agentic secret storage: https://dotenvx.com/as2
+node.exe : C:\Users\VIC
+TUS\Desktop\PeopleStat-
+1\backend\node_modules\
+router\lib\route.js:228
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (C:\Users\VICT   
+ US...ib\route.js:2    
+28:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+        throw new 
+TypeError('argument 
+handler must be a 
+function')
+        ^
+
+TypeError: argument 
+handler must be a 
+function
+    at 
+Route.<computed> [as 
+post] (C:\Users\VICTUS\
+Desktop\PeopleStat-1\ba
+ckend\node_modules\rout
+er\lib\route.js:228:15)
+    at 
+Router.<computed> [as 
+post] (C:\Users\VICTUS\
+Desktop\PeopleStat-1\ba
+ckend\node_modules\rout
+er\index.js:448:19)
+    at 
+Object.<anonymous> (C:\
+Users\VICTUS\Desktop\Pe
+opleStat-1\backend\rout
+es\employees.js:12:8)
+    at Module._compile 
+(node:internal/modules/
+cjs/loader:1759:14)
+    at Object..js (node
+:internal/modules/cjs/l
+oader:1892:10)
+    at Module.load (nod
+e:internal/modules/cjs/
+loader:1479:32)
+    at Module._load (no
+de:internal/modules/cjs
+/loader:1298:12)
+    at TracingChannel.t
+raceSync (node:diagnost
+ics_channel:328:14)
+    at wrapModuleLoad (
+node:internal/modules/c
+js/loader:244:24)
+    at Module.require (
+node:internal/modules/c
+js/loader:1502:12)
+
+Node.js v25.0.0

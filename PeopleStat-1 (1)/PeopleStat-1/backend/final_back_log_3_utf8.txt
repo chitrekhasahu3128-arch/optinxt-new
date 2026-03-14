@@ -1,0 +1,148 @@
+﻿
+> backend@1.0.0 start
+> node server.js
+
+[dotenv@17.3.1] injecting env (4) from .env -- tip: ΓÜÖ∩╕Å  specify custom .env file path with { path: '/custom/path/.env' }
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ≡ƒöÉ prevent building .env in docker: https://dotenvx.com/prebuild
+Spinning up a zero-config in-memory MongoDB for local dev...
+node.exe : Failed to 
+connect to primary 
+MongoDB URI: connect 
+ECONNREFUSED 
+::1:27017, connect 
+ECONNREFUSED 
+127.0.0.1:27017
+At line:1 char:1
++ & "C:\Program 
+Files\nodejs/node.exe" 
+"C:\Program 
+Files\nodejs/node_mo 
+...
++ ~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~
+~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (Failed to con   
+ ne...127.0.0.1:270    
+17:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+In-Memory MongoDB Connected at mongodb://127.0.0.1:58919/
+[dotenv@17.3.1] injecting env (0) from .env -- tip: ≡ƒ¢í∩╕Å auth for agents: https://vestauth.com
+Auto-seeding local demo database...
+Using existing MongoDB Connection for Seeding...
+Cleared existing data.
+Seeding Error: 
+ValidationError: User 
+validation failed: 
+name: Path `name` is 
+required.
+    at model.validate (
+C:\Users\VICTUS\Desktop
+\PeopleStat-1\backend\n
+ode_modules\mongoose\li
+b\document.js:2864:36)
+    at async 
+model.$__save (C:\Users
+\VICTUS\Desktop\PeopleS
+tat-1\backend\node_modu
+les\mongoose\lib\model.
+js:389:7)
+    at async 
+model.save (C:\Users\VI
+CTUS\Desktop\PeopleStat
+-1\backend\node_modules
+\mongoose\lib\model.js:
+663:5)
+    at async 
+model.create (C:\Users\
+VICTUS\Desktop\PeopleSt
+at-1\backend\node_modul
+es\mongoose\lib\model.j
+s:2750:5)
+    at async 
+seedDatabase (C:\Users\
+VICTUS\Desktop\PeopleSt
+at-1\backend\seed.js:50
+:5)
+    at async connectDB 
+(C:\Users\VICTUS\Deskto
+p\PeopleStat-1\backend\
+config\db.js:42:9)
+    at async 
+startServer (C:\Users\V
+ICTUS\Desktop\PeopleSta
+t-1\backend\server.js:2
+5:5) {
+Database connection established successfully.
+  errors: {
+    name: 
+ValidatorError: Path 
+`name` is required.
+        at SchemaString
+.doValidate (C:\Users\V
+ICTUS\Desktop\PeopleSta
+t-1\backend\node_module
+s\mongoose\lib\schemaTy
+pe.js:1432:13)
+        at 
+model.validate (C:\User
+s\VICTUS\Desktop\People
+Stat-1\backend\node_mod
+ules\mongoose\lib\docum
+ent.js:2842:20)
+        at async 
+model.$__save (C:\Users
+\VICTUS\Desktop\PeopleS
+tat-1\backend\node_modu
+les\mongoose\lib\model.
+js:389:7)
+        at async 
+model.save (C:\Users\VI
+CTUS\Desktop\PeopleStat
+-1\backend\node_modules
+\mongoose\lib\model.js:
+663:5)
+        at async 
+model.create (C:\Users\
+VICTUS\Desktop\PeopleSt
+at-1\backend\node_modul
+es\mongoose\lib\model.j
+s:2750:5)
+        at async 
+seedDatabase (C:\Users\
+VICTUS\Desktop\PeopleSt
+at-1\backend\seed.js:50
+:5)
+        at async 
+connectDB (C:\Users\VIC
+TUS\Desktop\PeopleStat-
+1\backend\config\db.js:
+42:9)
+        at async 
+startServer (C:\Users\V
+ICTUS\Desktop\PeopleSta
+t-1\backend\server.js:2
+5:5) {
+      properties: 
+[Object],
+      kind: 'required',
+      path: 'name',
+      value: undefined,
+      reason: 
+undefined,
+      Symbol(mongoose#v
+alidatorError): true
+    }
+  },
+  _message: 'User 
+validation failed'
+}
+No seed module found, 
+skipping auto-seed.
+Server started on port 5000
