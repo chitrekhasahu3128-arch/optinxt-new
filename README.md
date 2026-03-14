@@ -36,6 +36,12 @@ Run all dev servers at once (requires `concurrently`):
 npm run dev:all
 ```
 
+This starts all projects concurrently on unique ports:
+- ai-workforce: backend on 5000, frontend on 5173
+- ai-workforce-employee-portal: on 3002
+- optinxt-1: on 3003
+- PeopleStat-1: on 3004
+
 ### 3) Build
 
 ```sh
