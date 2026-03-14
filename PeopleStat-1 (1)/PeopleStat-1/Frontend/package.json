@@ -4,7 +4,7 @@
   "description": "AI Workforce Optimization Platform - Frontend",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 127.0.0.1",
+    "dev": "cross-env vite --host 127.0.0.1 --port=${PORT:-3004}",
     "build": "vite build",
     "preview": "vite preview"
   },
@@ -37,6 +37,7 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
     "nodemon": "^3.1.11",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.17",
